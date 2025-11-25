@@ -161,7 +161,7 @@ function toggleViewMode(mode: string) {
     <div id="cards-container">
       <div id="page-cards">
         <!-- Loop through visibleProjects to render ProjectCard components -->
-        <ProjectCard v-for="(project, index) of visibleProjects" :key="index" :imageSrc="project.image[0].image_url"
+        <ProjectCard v-for="(project, index) of visibleProjects" :key="index" :imageSrc="project.image && project.image.length > 0 ? project.image[0].image_url : ''"
           :title="project.project_name" :text="project.short_description" :when="project.date_info" :where="project.location_info" :to="`/activities/projects/${project.project_id}`"
           :type="project.status === true ? 'present' : 'past'" />
       </div>

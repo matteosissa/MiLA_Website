@@ -2,7 +2,6 @@
 export default {
   devtools: { enabled: true },
   ssr: true,
-  target: 'static',
   app: {
     head: {
       title: 'Centro MiLA | Against women violence',

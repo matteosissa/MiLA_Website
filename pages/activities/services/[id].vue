@@ -25,60 +25,62 @@ if (id != totalServices){nextUrl = `/activities/services/service_${id+1}`;}
 /**general information about the service */
 const {data, error} = await useFetch(serviceUrl);
 const service = ref() as Ref<Service>;
-if(data.value){
-  const services = data.value as Service[];
-  service.value = services[0];
-} else {
-  console.log(error);
-}
-
-/**information about the images */
-let imageList = service.value.image;
 let coverImageURL = '';
 let descriptionImages = [] as string[];
-const re = new RegExp("Cover");
-for(let image of imageList){
-  if(re.test(image.image_id as string)) {
-    coverImageURL = image.image_url;
-  } else {
-    descriptionImages.push(image.image_url);
-  }
-}
-
-/**information about people offering the service */
-const offering_info: OfferingInfoSingleServicePage[] = service.value.offering_info;
 const offeringBovisa = ref([]) as Ref<OfferingInfoSingleServicePage[]>;
 const offeringFarini = ref([]) as Ref<OfferingInfoSingleServicePage[]>;
 let scheduleBovisa = '';
 let scheduleFarini = '';
+let service_testimonial = [] as any[];
 
-offering_info.forEach(offer_info => {
-  offer_info.location_id === 1 ? offeringBovisa.value.push(offer_info) : offeringFarini.value.push(offer_info);
-  offer_info.location_id === 1 ? scheduleBovisa = offer_info.schedule : scheduleFarini = offer_info.schedule;
-});
+if(data.value){
+  const services = data.value as Service[];
+  service.value = services[0];
 
-
-/**information about the testimonials */
-const service_testimonial = service.value.testimonial;
-
-useHead({
-  title: service.value.service_name + " | Discover Services Centro MiLA",
-  meta: [
-    {
-      name: 'description',
-      content: service.value.description,
-    },
-    {
-      name: 'keywords',
-      content: service.value.service_name + ', ' + service.value.manager.name + ' ' + service.value.manager.surname + ', MiLA service, domestic violence support, empowerment services, Milan support services, community impact, women\'s shelter services' +
-      'servizio MiLA, supporto violenza domestica, servizi di empowerment, servizi di supporto a Milano, impatto sulla comunità, servizi rifugio per donne',
+  /**information about the images */
+  let imageList = service.value.image;
+  const re = new RegExp("Cover");
+  for(let image of imageList){
+    if(re.test(image.image_id as string)) {
+      coverImageURL = image.image_url;
+    } else {
+      descriptionImages.push(image.image_url);
     }
-  ]
-});
+  }
+
+  /**information about people offering the service */
+  const offering_info: OfferingInfoSingleServicePage[] = service.value.offering_info;
+
+  offering_info.forEach(offer_info => {
+    offer_info.location_id === 1 ? offeringBovisa.value.push(offer_info) : offeringFarini.value.push(offer_info);
+    offer_info.location_id === 1 ? scheduleBovisa = offer_info.schedule : scheduleFarini = offer_info.schedule;
+  });
+
+  /**information about the testimonials */
+  service_testimonial = service.value.testimonial;
+
+  useHead({
+    title: service.value.service_name + " | Discover Services Centro MiLA",
+    meta: [
+      {
+        name: 'description',
+        content: service.value.description,
+      },
+      {
+        name: 'keywords',
+        content: service.value.service_name + ', ' + service.value.manager.name + ' ' + service.value.manager.surname + ', MiLA service, domestic violence support, empowerment services, Milan support services, community impact, women\'s shelter services' +
+        'servizio MiLA, supporto violenza domestica, servizi di empowerment, servizi di supporto a Milano, impatto sulla comunità, servizi rifugio per donne',
+      }
+    ]
+  });
+} else {
+  console.log('Error fetching service:', error);
+}
 
 </script>
 
 <template>
+  <div v-if="service">
   <div id="service-cover" :style="{ backgroundImage: `url('${coverImageURL}')` }">
     <backward-button-wrapper>
       <BackwardButton buttonText="Our Services" to="/activities/services" />
@@ -158,6 +160,12 @@ useHead({
       <p> Next </p>
       <Icon name="NavRightArrowIcon" size="19" />
     </NuxtLink>
+  </div>
+  </div>
+  <div v-else style="padding: 200px 0; text-align: center;">
+    <h2>Service not found</h2>
+    <p>The service you're looking for could not be loaded.</p>
+    <NuxtLink to="/activities/services" style="color: var(--purple); text-decoration: underline;">Back to all services</NuxtLink>
   </div>
 </template>
 

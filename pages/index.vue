@@ -34,15 +34,17 @@ const visibleProjects = computed(() => {
 });
 
 // Retrieve the cover image for the services
-function retrieveCoverImageURL (serviceIndex: number): string {
-  let imageList = services.value[serviceIndex].image;
+function retrieveCoverImageURL (service: Service): string {
+  if (!service || !service.image || service.image.length === 0) {
+    return '';
+  }
   const regex = new RegExp("Cover");
-  for(let image of imageList) {
+  for(let image of service.image) {
     if(regex.test(image.image_id as string)) {
       return image.image_url;
     }
   }
-  return "Image not found";
+  return '';
 }
 
 
@@ -68,7 +70,7 @@ function retrieveCoverImageURL (serviceIndex: number): string {
   <div class="activity-container">
     <h3>Our Services</h3>
     <div class="grid-3">
-      <ActivityCard v-for="(service, index) of services" :key="index" :imageSrc="retrieveCoverImageURL(index)" 
+      <ActivityCard v-for="(service, index) of services" :key="index" :imageSrc="retrieveCoverImageURL(service)" 
       :title="service.service_name" :text="service.short_description" :to="`/activities/services/${service.service_id}`" />
     </div>
   </div>
@@ -76,7 +78,7 @@ function retrieveCoverImageURL (serviceIndex: number): string {
   <div class="activity-container">
     <h3>Our Projects</h3>
     <div class="grid-3">
-      <ActivityCard v-for="(project, index) of visibleProjects" :key="index" :imageSrc="project.image[0].image_url" 
+      <ActivityCard v-for="(project, index) of visibleProjects" :key="index" :imageSrc="project.image && project.image.length > 0 ? project.image[0].image_url : ''" 
       :title="project.project_name" :text="project.short_description" :to="`/activities/projects/${project.project_id}`" />
     </div>
     <MainButton buttonText="Discover All Projects" buttonLength="long" to="/activities/projects"

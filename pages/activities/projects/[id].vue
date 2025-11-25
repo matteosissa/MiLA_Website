@@ -25,28 +25,28 @@ const { data, error } = await useFetch(projectURL);
 if(data.value){
   const projects = data.value as Project[];
   projectData.value = projects[0];
+  
+  useHead({
+    title: projectData.value.project_name + ' | Discover Projects Centro MiLA',
+    meta: [
+      {
+        name: 'description',
+        content: projectData.value.short_description,
+      },
+      {
+        name: 'keywords',
+        content: projectData.value.project_name + ', ' + projectData.value.location_info + ', ' + projectData.value.date_info + ', anti-violence project, domestic abuse support,  project manager, event details, participants, sponsors'
+        + 'progetto contro la violenza, programma di empowerment delle donne, supporto per vittime di abusi domestici, rifugio per donne in crisi, prevenzione della violenza di genere',
+      }
+    ]
+  });
 } else {
-  console.log(error);
+  console.log('Error fetching project:', error);
 }
-
-useHead({
-  title: projectData.value.project_name + ' | Discover Projects Centro MiLA',
-  meta: [
-    {
-      name: 'description',
-      content: projectData.value.short_description,
-    },
-    {
-      name: 'keywords',
-      content: projectData.value.project_name + ', ' + projectData.value.location_info + ', ' + projectData.value.date_info + ', anti-violence project, domestic abuse support,  project manager, event details, participants, sponsors'
-      + 'progetto contro la violenza, programma di empowerment delle donne, supporto per vittime di abusi domestici, rifugio per donne in crisi, prevenzione della violenza di genere',
-    }
-  ]
-});
 
 // Objects for dynamic styling of elements
 const coverStyling = ref({
-  backgroundImage: `url(${projectData.value.image[0].image_url})`,
+  backgroundImage: projectData.value && projectData.value.image && projectData.value.image.length > 0 ? `url(${projectData.value.image[0].image_url})` : '',
 });
 
 
@@ -106,7 +106,7 @@ const managerFullName = computed(() => { return projectData.value.person?.name +
 <template>
 
   <!-- Wrapper for the whole page -->
-  <div class="page-wrapper">
+  <div v-if="projectData" class="page-wrapper">
 
 
     <!-- Cover section with the title -->
@@ -214,6 +214,11 @@ const managerFullName = computed(() => { return projectData.value.person?.name +
     </nav>
 
 
+  </div>
+  <div v-else style="padding: 200px 0; text-align: center;">
+    <h2>Project not found</h2>
+    <p>The project you're looking for could not be loaded.</p>
+    <NuxtLink to="/activities/projects" style="color: var(--purple); text-decoration: underline;">Back to all projects</NuxtLink>
   </div>
 </template> 
 

@@ -90,15 +90,17 @@ function shouldDisplaySeparator(pageNumber: number): boolean {
   return true;
 }
 
-function retrieveCoverImageURL (serviceIndex: number): string {
-  let imageList = services.value[serviceIndex].image;
+function retrieveCoverImageURL (service: Service): string {
+  if (!service || !service.image || service.image.length === 0) {
+    return '';
+  }
   const regex = new RegExp("Cover");
-  for(let image of imageList) {
+  for(let image of service.image) {
     if(regex.test(image.image_id as string)) {
       return image.image_url;
     }
   }
-  return "Image not found";
+  return '';
 }
 
 </script>
@@ -131,8 +133,11 @@ function retrieveCoverImageURL (serviceIndex: number): string {
     <div id="cards-container">
       <div id="page-cards">
         <!-- Loop through visibleServices to render ServiceCard components -->
-        <ServiceCard v-for="(service, index) in visibleServices" :key="service.service_id" :imageSrc="retrieveCoverImageURL(index)"
-          :title="service.service_name" :text="service.short_description" :when="[service.service_offering_info[0].schedule, service.service_offering_info[1].schedule ]" :where="[service.service_offering_info[0].location.name, service.service_offering_info[1].location.name ]" :to="`/activities/services/${service.service_id}`" />
+        <ServiceCard v-for="(service, index) in visibleServices" :key="service.service_id" :imageSrc="retrieveCoverImageURL(service)"
+          :title="service.service_name" :text="service.short_description" 
+          :when="service.service_offering_info && service.service_offering_info.length >= 2 ? [service.service_offering_info[0].schedule, service.service_offering_info[1].schedule] : []" 
+          :where="service.service_offering_info && service.service_offering_info.length >= 2 ? [service.service_offering_info[0].location.name, service.service_offering_info[1].location.name] : []" 
+          :to="`/activities/services/${service.service_id}`" />
       </div>
       <div id="bottom-space" v-if="totalPages == 1" /> <!-- Add space at the bottom if there is only one page -->
     </div>
