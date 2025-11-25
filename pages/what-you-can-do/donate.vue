@@ -28,7 +28,7 @@ useHead({
       </backward-button-wrapper>
 
       <!-- Page title section -->
-      <div id="page-title" :style="{ backgroundImage: 'url(https://pbvaepwwamyykdrwmqui.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Donate.png)'}">
+      <div id="page-title" :style="{ backgroundImage: 'url(https://bpvtqszwvepixqceqdli.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Donate.png)'}">
         <h1 class="page-title">Donate to<br />Centro MiLA</h1>
       </div>
 

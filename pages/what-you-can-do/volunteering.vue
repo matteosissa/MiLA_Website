@@ -32,7 +32,7 @@ function submit(event:Event){
     <backward-button-wrapper>
       <BackwardButton buttonText="What You Can Do" class="back-button" to="/what-you-can-do" />
     </backward-button-wrapper>
-  <div id="volunteering-cover" :style="{ backgroundImage: 'url(https://pbvaepwwamyykdrwmqui.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Volunteering.png)'}">
+  <div id="volunteering-cover" :style="{ backgroundImage: 'url(https://bpvtqszwvepixqceqdli.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Volunteering.png)'}">
     <h1 class="page-title" >Become a <br> volunteer at MiLA</h1>
   </div>
   

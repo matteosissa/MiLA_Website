@@ -20,7 +20,7 @@
 </script>
 
 <template>
-  <div id="about-cover" :style="{ backgroundImage: 'url(https://pbvaepwwamyykdrwmqui.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_About_Us.png)'}">
+  <div id="about-cover" :style="{ backgroundImage: 'url(https://bpvtqszwvepixqceqdli.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_About_Us.png)'}">
     <h1 class="page-title">About Us</h1>
   </div>
 

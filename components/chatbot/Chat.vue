@@ -25,6 +25,8 @@ export default defineComponent({
             chat: [] as Message[] ,   // Array of messages to be displayed
             isWaitingForReply: false,
             threadId: '',
+            // When true the chat UI will show a disabled message and prevent sending messages
+            chatDisabled: true,
             openai: new OpenAI( {apiKey: this.$config.public.openaiApiKey, dangerouslyAllowBrowser: true }),   
             assistantId: 'asst_1zbW4JTNBND59Max3CW5YvM5',   // id of the assistant on OpenAI platform
             conversationRef: null as any,
@@ -101,6 +103,22 @@ export default defineComponent({
         clearChat() {
             this.chat = [];
         },
+        /* Close the chat overlay and navigate to the contacts page */
+        contactAndClose() {
+            // emit to parent to close the chatbot overlay
+            this.$emit('closeChatbot');
+            // navigate to contacts page
+            try {
+                // prefer router navigation when available
+                if (this.$router) {
+                    this.$router.push('/contacts');
+                    return;
+                }
+            } catch (e) {
+                // fallback to full navigation
+            }
+            window.location.href = '/contacts';
+        },
         handleChatScroll(event: Event) {
             event.preventDefault();
         }
@@ -117,7 +135,7 @@ export default defineComponent({
     <div class="chatbot-dialogue" @click.stop @wheel="handleChatScroll">   
           
         <div class="chat-left" v-if="showLeftPanel">
-            <button  @click="clearChat" class="clear-chat-button-left" style="font-size: var(--body1); line-height: var(--l-height1); width: 120px; height: 40px; min-height: 40px" > Clear Chat </button>
+            <button v-if="!chatDisabled" @click="clearChat" class="clear-chat-button-left" style="font-size: var(--body1); line-height: var(--l-height1); width: 120px; height: 40px; min-height: 40px" > Clear Chat </button>
             <div class="chatbot-text-div">
                 <h4>We are here to <br> help you.</h4>
                 <p>This space is here to guide you on what to do and who to reach out to if you're experiencing or have experienced violence from men. 
@@ -127,7 +145,7 @@ export default defineComponent({
 
         <div class="chat-right" >
             <div class="chat-close">
-                <button v-if="!showLeftPanel" class="clear-chat-button-right" @click="clearChat" style="font-size: var(--body1); line-height: var(--l-height1); width: 120px; height: 40px; min-height: 40px"> Clear Chat</button>
+                <button v-if="!showLeftPanel && !chatDisabled" class="clear-chat-button-right" @click="clearChat" style="font-size: var(--body1); line-height: var(--l-height1); width: 120px; height: 40px; min-height: 40px"> Clear Chat</button>
                 <button type="button" class="close-chat-button" aria-label="Close the chat" @click="$emit('closeChatbot')">
                     <Icon name="MobileExitIcon" color="var(--purple)" size="32" />
                 </button>
@@ -141,7 +159,15 @@ export default defineComponent({
                     </div>
                 </div>
 
-                <form id="chat-form" @submit.prevent="handleConversation">
+                <!-- When chatDisabled is true we show a friendly notice and remove the ability to send messages -->
+                <div v-if="chatDisabled" class="chat-disabled" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;gap:1rem;">
+                    <h3 style="margin:0;">Chat temporarily disabled</h3>
+                    <p style="margin:0;max-width:56ch;text-align:center;">For security reasons this chat has been disabled. If you need support please contact us via the contacts page or call the numbers listed on the site. The chat is read-only and no messages can be sent.</p>
+                    <button @click="contactAndClose" class="contact-us-button" style="width:160px;height:40px;border-radius:8px;border:1px solid var(--purple);background-color:var(--white);color:var(--purple);cursor:pointer;font-size:var(--body1);">Contact Us</button>
+                </div>
+
+                <!-- Keep the chat form markup available but hidden when the chat is disabled so it can be re-enabled later -->
+                <form v-else id="chat-form" @submit.prevent="handleConversation">
                     <input type="text" v-model="userInput" name="input" placeholder="Here you can write" aria-label="Here you can type the message for us. Press Enter to send the message, then wait for the response to be read. Type again from the keyboard to keep the conversation going." required 
                         :style="{ fontSize: '16px' }">
                     <button type="submit" aria-label='Send the message' style="width: 80px; height: 40px; border: 1px solid var(--purple); border-radius: 8px; font-size: var(--body1);

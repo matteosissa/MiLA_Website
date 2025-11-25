@@ -98,7 +98,7 @@ function shouldDisplaySeparator(pageNumber: number): boolean {
   <div id="people-page">
 
     <!-- Cover section with image, title, back button -->
-    <div id="page-title" :style="{ backgroundImage: 'url(https://pbvaepwwamyykdrwmqui.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Our_People.png)'}">
+    <div id="page-title" :style="{ backgroundImage: 'url(https://bpvtqszwvepixqceqdli.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Our_People.png)'}">
       <backward-button-wrapper>
         <BackwardButton buttonText="About Us" to="/about-us" />
       </backward-button-wrapper>

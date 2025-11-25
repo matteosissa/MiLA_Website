@@ -108,7 +108,7 @@ function retrieveCoverImageURL (serviceIndex: number): string {
   <div id="service-page">
 
     <!-- Cover section with image, title, back button -->
-    <div id="page-title" :style="{ backgroundImage: 'url(https://pbvaepwwamyykdrwmqui.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Our_Services.png)'}">
+    <div id="page-title" :style="{ backgroundImage: 'url(https://bpvtqszwvepixqceqdli.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Our_Services.png)'}">
       <backward-button-wrapper>
         <BackwardButton buttonText="Our Activities" to="/activities" />
       </backward-button-wrapper>

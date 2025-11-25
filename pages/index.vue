@@ -52,7 +52,7 @@ function retrieveCoverImageURL (serviceIndex: number): string {
 
 <template>
 
-  <div id="home-cover" :style="{ backgroundImage: `url(https://pbvaepwwamyykdrwmqui.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Homepage.png)`}">
+  <div id="home-cover" :style="{ backgroundImage: `url(https://bpvtqszwvepixqceqdli.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Homepage.png)`}">
     <div class="page-title">
       <h1>Centro MiLA</h1>
       <h2>Empowering women on their journey beyond abuse, towards healing and renewal.</h2>

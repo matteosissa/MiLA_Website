@@ -17,7 +17,7 @@
 </script>
 
 <template>
-  <div id="locations-cover" :style="{ backgroundImage: 'url(https://pbvaepwwamyykdrwmqui.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Our_Location.png)'}">
+  <div id="locations-cover" :style="{ backgroundImage: 'url(https://bpvtqszwvepixqceqdli.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Our_Location.png)'}">
     <backward-button-wrapper>
       <BackwardButton buttonText="About Us" to="/about-us" />
     </backward-button-wrapper>

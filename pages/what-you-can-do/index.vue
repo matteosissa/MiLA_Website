@@ -23,7 +23,7 @@ useHead({
   <!-- Main container for the activities page -->
   <div id="activities-page">
     <!-- Title section -->
-    <div class="cover" :style="{ backgroundImage: 'url(https://pbvaepwwamyykdrwmqui.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_What_you_can_do.png)'}">
+    <div class="cover" :style="{ backgroundImage: 'url(https://bpvtqszwvepixqceqdli.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_What_you_can_do.png)'}">
       <h1 class="page-title">Discover how to<br />Support MiLA</h1>
     </div>
 

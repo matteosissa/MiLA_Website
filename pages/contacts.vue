@@ -30,7 +30,7 @@ function submit(event:Event){
 </script>
 
 <template>
-  <div id="contacts-cover" :style="{ backgroundImage: 'url(https://pbvaepwwamyykdrwmqui.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Contact_us.png)'}">
+  <div id="contacts-cover" :style="{ backgroundImage: 'url(https://bpvtqszwvepixqceqdli.supabase.co/storage/v1/object/public/HYP-Images/cover_image/Cover_Contact_us.png)'}">
     <h1 class="page-title">Contact <br>Centro MiLA</h1>
   </div>
 
