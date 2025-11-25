@@ -34,7 +34,7 @@ The MiLA project follows a three-tier architecture:
    - Storage: Supabase Storage for images and media
 
 
-## Project Structure
+### Project Structure
 
 ```text
 
