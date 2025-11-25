@@ -10,6 +10,10 @@ Primary objectives:
 2. **Empowerment Tools**: offering tools and opportunities to help women improve their lives and achieve lasting happiness
 3. **Enhanced Accessibility**: widening the reach of support and improving service accessibility
 
+## Documentation
+
+Under the folder `project_description` it is possible to find the set of requirements for this project, while the folder `reports` contains the documentation produced at the end of this project describing in detail the design and technological aspects.
+
 ## Technical Stack
 
 ### Three-Tier Architecture
