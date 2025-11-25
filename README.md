@@ -64,164 +64,59 @@ The MiLA project follows a three-tier architecture:
 ```
 
 
-### Prerequisites## Project Structure
+### Prerequisites
 
-
-
-- Node.js (v18 or higher)```
+- Node.js (v18 or higher)
 
 - npm or yarn
 
-├── assets/               # Static assets (images, styles)
+1. Clone the repository and navigate to the project directory:
 
-### Installation│   ├── images/          # Image files
+    ```bash
 
-│   └── styles/          # Global CSS
+    git clone https://github.com/matteosissa/MiLA_Website.git
+    cd MiLA_Website
 
-1. Clone the repository and navigate to the project directory:├── components/          # Vue components
-
-│   ├── buttons/         # Button components
-
-```bash│   ├── cards/           # Card components
-
-git clone https://github.com/matteosissa/MiLA_Website.git│   ├── chatbot/         # Chatbot UI components
-
-cd MiLA_Website│   ├── global/          # Global/shared components (icons, etc.)
-
-```│   └── header/          # Header and navigation components
-
-├── layouts/             # Nuxt layouts
-
-2. Install dependencies:│   └── default.vue      # Default layout with header and footer
-
-├── pages/               # File-based routing
-
-```bash│   ├── index.vue        # Homepage
-
-# npm│   ├── contacts.vue     # Contact page
-
-npm install│   ├── about-us/        # About Us section
-
-│   │   ├── index.vue
-
-# yarn│   │   ├── locations.vue
-
-yarn install│   │   └── people/
-
-```│   ├── activities/      # Activities section
-
-│   │   ├── index.vue
-
-3. Set up environment variables (create a `.env` file in the root directory):│   │   ├── projects/
-
-│   │   └── services/
-
-```env│   └── what-you-can-do/ # Support section
-
-OPENAI_API_KEY=your_openai_api_key│       ├── donate.vue
-
-BASE_BACKEND_URL=your_backend_api_url│       └── volunteering.vue
-
-```├── plugins/             # Nuxt plugins
-
-├── types/               # TypeScript type definitions
-
-4. Start the development server on `http://localhost:3000`:├── nuxt.config.ts       # Nuxt configuration
-
-├── package.json         # Dependencies
-
-```bash└── tsconfig.json        # TypeScript configuration
-
-# npm```
-
-npm run dev
-
-## Getting Started
-
-# yarn
-
-yarn dev### Prerequisites
-
-```- Node.js (v18 or higher)
-
-- npm or yarn
-
-### Build for Production
-
-### Installation
-
-```bash1. Clone the repository and navigate to the project directory:
-
-# Generate static site```bash
-
-npm run generategit clone https://github.com/matteosissa/MiLA_Website.git
-
-cd MiLA_Website
-
-# Build for SSR```
-
-npm run build
+    ```
 
 2. Install dependencies:
 
-# Preview production build```bash
+    ```bash
 
-npm run preview# npm
+    npm install
 
-```npm install
+    yarn install
 
+    ```
 
+3. Set up environment variables (create a `.env` file in the root directory):
 
-## Deployment# yarn
+    ```env
 
-yarn install
+    OPENAI_API_KEY=your_openai_api_key
 
-The frontend is deployed on [Vercel](https://vercel.com) with automatic deployments on push to the `master` branch via GitHub Actions.```
+    BASE_BACKEND_URL=your_backend_api_url
 
-
-
-## Contact3. Set up environment variables:
-
-Create a `.env` file in the root directory with:
-
-For any questions or support, please contact us at:```env
-
-OPENAI_API_KEY=your_openai_api_key
-
-- **Email**: centromila@gmail.comBASE_BACKEND_URL=your_backend_api_url
-
-- **Phone**: 0521 248886```
-
-- **Emergency Hotline**: 1522 (anti-violence centres) or 112 (police)
+    ```
 
 4. Start the development server on `http://localhost:3000`:
 
-We appreciate your support and thank you for being a part of MiLA's mission.```bash
+    ```bash
 
-# npm
-npm run dev
+    npm run dev
 
-# yarn
-yarn dev
-```
+    yarn dev
 
-### Build for Production
-```bash
-# Generate static site
-npm run generate
-
-# Build for SSR
-npm run build
-
-# Preview production build
-npm run preview
-```
+    ```
 
 ## Deployment
+
 The frontend is deployed on [Vercel](https://vercel.com) with automatic deployments on push to the `master` branch via GitHub Actions.
 
 ## Contact
+
 For any questions or support, please contact us at:
+
 - **Email**: centromila@gmail.com
 - **Phone**: 0521 248886
 - **Emergency Hotline**: 1522 (anti-violence centres) or 112 (police)
