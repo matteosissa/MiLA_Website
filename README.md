@@ -12,7 +12,7 @@ Primary objectives:
 
 ## Documentation
 
-Under the folder `project_description` it is possible to find the set of requirements for this project, while the folder `reports` contains the documentation produced at the end of this project describing in detail the design and technological aspects.
+Under the folder `project_description/` it is possible to find the set of requirements for this project, while the folder `reports/` contains the documentation produced at the end of this project describing in detail the design and technological aspects.
 
 ## Technical Stack
 
